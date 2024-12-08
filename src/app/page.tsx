@@ -6,6 +6,6 @@ export default function Home() {
   const router = useRouter();
   useEffect(() => {
     console.log("Hello, World!");
-    router.push("/dashboard");
+    router.push("/home");
   });
 }

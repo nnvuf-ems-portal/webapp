@@ -22,7 +22,16 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        primary: "#191277",
+        secondary: "#3b424f",
       },
+      spacing: {
+        '17': '4.25rem',
+        '18': '4.5rem',
+        '108': '27rem',
+        '120': '30rem',
+        '128': '32rem',
+      }
     },
   },
   plugins: [],
