@@ -1,0 +1,43 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "serve: The Web Portal",
+      "command": "npm run dev",
+      "type": "shell", 
+      "isBackground": true,
+      "promptOnClose": true,
+      "problemMatcher": {
+        "owner": "typescript",
+        "pattern": "$tsc",
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": {
+            "regexp": "(.*?)"
+          },
+          "endsPattern": {
+            "regexp": "bundle generation complete"
+          }
+        }
+      },
+      "presentation": {
+        "reveal": "always"
+      },
+      "group": "build",
+    },
+    {
+      "label": "terminate all",
+      "type": "shell",
+      "command": "echo ${input:terminate}",
+      "problemMatcher": [],
+    }
+  ],
+  "inputs": [
+    {
+      "id": "terminate",
+      "type": "command",
+      "command": "workbench.action.tasks.terminate",
+      "args": "terminateAll"
+    }
+  ]
+}
