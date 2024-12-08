@@ -1,8 +1,9 @@
 import { EmsLayout } from "../../layouts/ems-layout";
 
-export default function AuthLayout() { 
+export default function AuthLayout({ children }: Readonly<{ children: React.ReactNode }>) { 
   return (
     <EmsLayout>
-    </EmsLayout>
+      {children}
+      </EmsLayout>
   );
 }
