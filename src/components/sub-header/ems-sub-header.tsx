@@ -1,8 +1,10 @@
 'use client';
-import { useEffect, useState } from 'react';
-import { NavLinkModel } from '../../models/nav-link.model';
+import React, { useEffect, useState } from 'react';
 import moment from 'moment';
-import React from 'react';
+import { NavLinkModel } from '../../models/nav-link.model';
+import { IsClientComponent } from '../is-client-component/is-client-component';
+import { CalendarDayIcon } from '../icons/icons';
+import { EmsConstant } from '../../ultility/ems-constant';
 
 export interface EmsSubHeaderProps {
   color?: string;
@@ -14,7 +16,7 @@ export interface EmsSubHeaderProps {
 }
 
 export const EmsSubHeader = (props: EmsSubHeaderProps) => {
-  const { color, backgroundColor, leftLinks, centerLinks, rightLinks } = props;
+  const { color, backgroundColor, leftLinks, centerLinks } = props;
 
   const [currentTime, setCurrentTime] = useState(moment());
 
@@ -32,7 +34,7 @@ export const EmsSubHeader = (props: EmsSubHeaderProps) => {
         {/* Display client clock here */}
         <div
           className='flex items-center justify-center text-xs font-bold p-1'
-          style={{ width: '145px', backgroundColor: backgroundColor }}>
+          style={{ width: EmsConstant.EmsLayout.sideNavWidth, backgroundColor: backgroundColor }}>
           <div className='flex items-center justify-center border-2 rounded-[5px] px-2 py-1 text-center'>
             <div className='inline-block border-2 rounded-full p-0'>
               <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor' className='size-4'>
@@ -43,15 +45,17 @@ export const EmsSubHeader = (props: EmsSubHeaderProps) => {
                 />
               </svg>
             </div>
-            <p className='inline-block my-auto ms-2'>{currentTime.format('HH:mm:ss')}</p>
+            <IsClientComponent>
+              <p className='inline-block my-auto ms-2'>{currentTime.format('HH:mm:ss')}</p>
+            </IsClientComponent>
           </div>
         </div>
-        <div className='flex items-cener justify-between'>
-          <div className='py-1' style={{ backgroundColor: backgroundColor }}>
+        <div className='flex flex-1 items-center justify-between'>
+          <div className='flex items-center justify-start h-[40px] py-1' style={{ backgroundColor: backgroundColor }}>
             {leftLinks &&
               leftLinks.length > 0 &&
               leftLinks.map((navLink, index) => (
-                <div key={index} className='flex items-center justify-center p-1'>
+                <div key={index} className='flex flex-col items-center justify-center px-1'>
                   {navLink.icon && (
                     <>
                       {typeof navLink.icon === 'string' ? (
@@ -59,19 +63,39 @@ export const EmsSubHeader = (props: EmsSubHeaderProps) => {
                       ) : (
                         React.isValidElement(navLink.icon) && navLink.icon
                       )}
-                      <p className='text-xs'>{navLink.label}</p>
+                      <p className='text-xs'>{navLink.label.toUpperCase()}</p>
                     </>
                   )}
-                  {!navLink.icon && (
-                    <p>
-                      <small>{navLink.label}</small>
-                    </p>
-                  )}
+                  {!navLink.icon && <p className='text-sm'>{navLink.label.toUpperCase()}</p>}
                 </div>
               ))}
           </div>
-          <div style={{ backgroundColor: backgroundColor }}></div>
-          <div style={{ backgroundColor: backgroundColor }}></div>
+          <div className='flex items-center justify-center' style={{ backgroundColor: backgroundColor }}>
+            {centerLinks &&
+              centerLinks.length > 0 &&
+              centerLinks.map((navLink, index) => (
+                <div key={index} className='flex items-center justify-center h-[40px] p-1 border-l first:border-0'>
+                  {navLink.icon && (
+                    <>
+                      {typeof navLink.icon === 'string' ? (
+                        <img src={navLink.icon} alt='' className='w-5 h-5' />
+                      ) : (
+                        React.isValidElement(navLink.icon) && navLink.icon
+                      )}
+                      <p className='ms-1 text-xs'>{navLink.label.toUpperCase()}</p>
+                    </>
+                  )}
+                  {!navLink.icon && <p className='text-sm'>{navLink.label.toUpperCase()}</p>}
+                </div>
+              ))}
+          </div>
+          <div className='flex items-center justify-end h-[40px] py-1 px-3' style={{ backgroundColor: backgroundColor }}>
+            <CalendarDayIcon width={24} />
+            <div className='ms-3'>
+              <p className='text-xs font-bold'>System Date:</p>
+              <p className='text-xs'>{currentTime.format('YYYY-MM-DD')}</p>
+            </div>
+          </div>
         </div>
       </nav>
     </header>

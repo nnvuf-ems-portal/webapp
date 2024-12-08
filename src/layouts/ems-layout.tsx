@@ -3,7 +3,10 @@ import { EmsHeader } from '../components/header/ems-header';
 import { EmsSubHeader } from '../components/sub-header/ems-sub-header';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowsRotate } from '@fortawesome/free-solid-svg-icons';
+import { faArrowsRotate, faSitemap, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { CustomizeIcon, PersonIcon } from '../components/icons/icons';
+import { EmsSideNav } from '../components/side-nav/ems-side-nav';
+import { EmsCalendars } from '../components/calendars/ems-calendars';
 
 export interface EmsLayoutProps {
   children: React.ReactNode;
@@ -15,7 +18,7 @@ export interface EmsLayoutProps {
 export const EmsLayout = () => {
   // const { children, header1List, header2List } = props;
   return (
-    <>
+    <div className='flex flex-col w-screen h-screen'>
       <EmsHeader
         color='#ffffff'
         backgroundColor='#3b424f'
@@ -32,22 +35,40 @@ export const EmsLayout = () => {
           { href: '/', label: 'STANDARD BUSINESS SYSTEM' },
           { href: '/', label: 'STANDARD BUSINESS OPERATIONS' },
           { href: '/', label: 'STANDARD BUSINESS FUNTION' },
-          { href: '/', label: 'STANDARD BUSINESS LINE' }
+          { href: '/', label: 'STANDARD BUSINESS LINE' },
         ]}
       />
       <EmsSubHeader
         color='#ffffff'
         backgroundColor='#191277'
         leftLinks={[
-          { href: '/', label: 'Refresh', icon: (<FontAwesomeIcon icon={faArrowsRotate} width={16} />) },
+          { href: '/', label: 'Refresh', icon: <FontAwesomeIcon icon={faArrowsRotate} width={16} /> },
+          { href: '/', label: 'Customize', icon: <CustomizeIcon width={16} /> },
+        ]}
+        centerLinks={[
+          { href: '/', label: 'PERSON NAME', icon: <PersonIcon width={16} /> },
+          { href: '/', label: 'VECTOR', icon: <FontAwesomeIcon icon={faUserPlus} width={16} /> },
+          { href: '/', label: 'POSITION', icon: <FontAwesomeIcon icon={faSitemap} width={16} /> },
+          { href: '/', label: 'Operations Manager' },
+          { href: '/', label: 'Operations Consultant' },
+          { href: '/', label: 'Operations Analyst' },
+        ]}
+      />
+      <main className='flex flex-1 flex-row items-center justify-stretch h-auto p-0'>
+        <EmsSideNav
+          backgroundColor='#3b424e'
+         links={[
+          { href: '/', label: 'System Maintenance' },
+          { href: '/', label: 'Operations Management' },
+          { href: '/', label: 'Standard Business Entity' },
+          { href: '/', label: 'Standard Business Process' },
+          { href: '/', label: 'Standard Business System' },
+          { href: '/', label: 'Logout' },
         ]}/>
-      <main className='flex flex-col items-center justify-center min-h-screen py-2'>
-        {/* <header className="flex flex-col items-center justify-center flex-1 px-20 text-center">
-          <h1 className="text-6xl font-bold">Welcome to EMS</h1>
-          <p className="mt-3 text-2xl">Enterprise Management System</p>
-        </header> */}
-        {/* {children} */}
+        <div className='flex flex-1 flex-col items-start justify-start w-full h-full bg-gray-100'>
+          <EmsCalendars />
+        </div>
       </main>
-    </>
+    </div>
   );
 };
