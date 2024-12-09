@@ -9,21 +9,23 @@ export const EmsButtonSecondary = (props: EmsButtonProps) => {
     <Button as={Fragment}>
       {({ hover, active }) => (
         <button
-          type={props.type || 'button'}
+          type={props.type || "button"}
           className={clsx(
-            'rounded text-white',
-            active && 'bg-secondary-700',
-            !active && hover && 'bg-secondary-500',
-            !active && !hover && 'bg-secondary',
+            "rounded text-white",
+            active && "bg-secondary-700",
+            !active && hover && "bg-secondary-500",
+            !active && !hover && "bg-secondary",
+            'transition-colors duration-300',
             props.className
           )}
-          onClick={onClick}>
+          onClick={onClick}
+        >
           {children}
         </button>
       )}
     </Button>
   );
-}
+};
 
 export const EmsButtonOutlineSecondary = (props: EmsButtonProps) => {
   const { children, onClick } = props;
@@ -31,18 +33,20 @@ export const EmsButtonOutlineSecondary = (props: EmsButtonProps) => {
     <Button as={Fragment}>
       {({ hover, active }) => (
         <button
-          type={props.type || 'button'}
+          type={props.type || "button"}
           className={clsx(
-            'rounded text-secondary border border-secondary',
-            active && 'bg-white-700',
-            !active && hover && 'bg-white-500 border-secondary',
-            !active && !hover && 'bg-white',
+            "rounded text-secondary border border-secondary",
+            active && "bg-white-700",
+            !active && hover && "bg-secondary-500 border-secondary",
+            !active && !hover && "bg-white",
+            'transition-colors duration-300',
             props.className
           )}
-          onClick={onClick}>
+          onClick={onClick}
+        >
           {children}
         </button>
       )}
     </Button>
   );
-}
+};

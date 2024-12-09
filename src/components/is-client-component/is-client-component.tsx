@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 export const IsClientComponent = ({ children }: Readonly<{ children: React.ReactNode }>) => {
   const [isClient, setIsClient] = useState(false);

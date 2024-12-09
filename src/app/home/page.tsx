@@ -57,19 +57,19 @@ export default function HomePage() {
         <EmsCalendars />
       </div>
 
-      <h1 className='text-center text-xl font-bold text-primary'>ENTERPRISE OPERATIONS RESPONSIBILITIES</h1>
+      <h1 className='text-center text-3xl font-bold text-primary mt-3'>ENTERPRISE OPERATIONS RESPONSIBILITIES</h1>
 
-      <div className='grid grid-cols-4 gap-4'>
-        <div>
+      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:lg:grid-cols-4 gap-4 px-4'>
+        <div className='mt-3'>
           <EmsTreeView data={[operationManager]} />
         </div>
-        <div>
+        <div className='mt-3'>
           <EmsTreeView data={[operationManager]} />
         </div>
-        <div>
+        <div className='mt-3'>
           <EmsTreeView data={[operationManager]} />
         </div>
-        <div>
+        <div className='mt-3'>
           <EmsTreeView data={[operationManager]} />
         </div>
       </div>

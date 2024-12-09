@@ -5,6 +5,7 @@ import clsx from 'clsx';
 export interface EmsSelectProps {
   className?: string;
   onSelect: (value: string) => void;
+  value?: string;
   options?: string[] | { value: string; label: string }[];
 }
 
@@ -14,6 +15,7 @@ export const EmsSelect = (props: EmsSelectProps) => {
   return (
     <div className='relative w-17'>
       <Select
+        value={props.value}
         onChange={(e) => onSelect(e.target.value)}
         className={clsx(
           'block w-full appearance-none rounded border-none bg-white py-1 px-2 text-sm/6 text-primary',

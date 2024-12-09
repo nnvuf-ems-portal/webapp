@@ -1,5 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
+import clsx from 'clsx';
 import moment from 'moment';
 import { NavLinkModel } from '../../models/nav-link.model';
 import { IsClientComponent } from '../is-client-component/is-client-component';
@@ -51,11 +52,15 @@ export const EmsSubHeader = (props: EmsSubHeaderProps) => {
           </div>
         </div>
         <div className='flex flex-1 items-center justify-between'>
-          <div className='flex items-center justify-start h-[40px] py-1' style={{ backgroundColor: backgroundColor }}>
+          <div className='flex items-center justify-start h-[40px]' style={{ backgroundColor: backgroundColor }}>
             {leftLinks &&
               leftLinks.length > 0 &&
               leftLinks.map((navLink, index) => (
-                <div key={index} className='flex flex-col items-center justify-center px-1'>
+                <button type='button' key={index} className={clsx(
+                  'flex flex-col items-center justify-center p-1',
+                  'hover:bg-primary-700 hover:text-white',
+                  'transition-colors duration-300'
+                  )}>
                   {navLink.icon && (
                     <>
                       {typeof navLink.icon === 'string' ? (
@@ -67,14 +72,18 @@ export const EmsSubHeader = (props: EmsSubHeaderProps) => {
                     </>
                   )}
                   {!navLink.icon && <p className='text-sm'>{navLink.label.toUpperCase()}</p>}
-                </div>
+                </button>
               ))}
           </div>
           <div className='flex items-center justify-center' style={{ backgroundColor: backgroundColor }}>
             {centerLinks &&
               centerLinks.length > 0 &&
               centerLinks.map((navLink, index) => (
-                <div key={index} className='flex items-center justify-center h-[40px] p-1 border-l first:border-0'>
+                <button type='button' key={index} className={clsx(
+                  'flex items-center justify-center h-[40px] p-1 border-l first:border-0',
+                  'hover:bg-primary-700 hover:text-white',
+                  'transition-colors duration-300'
+                  )}>
                   {navLink.icon && (
                     <>
                       {typeof navLink.icon === 'string' ? (
@@ -86,7 +95,7 @@ export const EmsSubHeader = (props: EmsSubHeaderProps) => {
                     </>
                   )}
                   {!navLink.icon && <p className='text-sm'>{navLink.label.toUpperCase()}</p>}
-                </div>
+                </button>
               ))}
           </div>
           <div className='flex items-center justify-end h-[40px] py-1 px-3' style={{ backgroundColor: backgroundColor }}>

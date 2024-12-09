@@ -1,5 +1,5 @@
 export interface EmsButtonProps {
-  children: React.ReactNode;
+  children: string | React.ReactNode;
   type?: 'button' | 'submit' | 'reset';
   className?: string;
   onClick: () => void;
